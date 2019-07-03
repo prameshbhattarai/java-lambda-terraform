@@ -26,7 +26,7 @@ variable "lambda_runtime" {
 }
 
 variable "api_path" {
-  default = "{employees}"
+  default = "{proxy+}"
 }
 
 variable "api_env_stage_name" {

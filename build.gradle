@@ -8,6 +8,9 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
+    flatDir {
+        dirs 'libs'
+    }
     mavenCentral()
 
 }
@@ -15,11 +18,15 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
-    implementation 'com.amazonaws:aws-lambda-java-core:1.2.0'
-    implementation 'com.amazonaws:aws-lambda-java-events:2.2.6'
-    implementation 'com.amazonaws:aws-lambda-java-log4j2:1.1.0'
+    compile 'com.amazonaws:aws-lambda-java-core:1.2.0'
+    compile 'com.amazonaws:aws-lambda-java-events:2.2.6'
+    compile 'com.amazonaws:aws-lambda-java-log4j2:1.1.0'
+    compile (name:'json-simple-1.1.1', ext:'jar')
 }
 
 tasks.withType(Jar) {
+    into('lib') {
+        from 'libs'
+    }
     destinationDir = file("$rootDir/output/")
 }
